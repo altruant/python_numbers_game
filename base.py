@@ -14,12 +14,17 @@ guess = int(input('What number am I thinking of between 0 and 15? \n'))
 
 computer_number = random.randrange(0,15)
 count = 1
-fail_statements=('Try again!\n', 'Not quite! Try again!\n', 'That wasn\'t the number I was thinking of. Maybe try another number?\n')
+fail_statements=('Try again!', 'Not quite! Try again!', 'That wasn\'t the number I was thinking of. Maybe try another number?')
 
 while count < 5:
     if guess != computer_number:
-        guess = int(input(random.choice(fail_statements)))
         count += 1
+        if guess < computer_number:
+            print(random.choice(fail_statements))
+            guess = int(input('Your guess was too low \n'))
+        elif guess > computer_number:
+            print(random.choice(fail_statements))
+            guess = int(input('Your guess was too high \n'))
     elif guess == computer_number:
         print('Congratulations!')
         break
